@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Confirmer la suppression</h1>
+<p>Voulez-vous vraiment supprimer la séance "{{ seance.titre }}" (code {{ seance.code }}) ?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Oui, supprimer</button>
+    <a href="{% url 'seance_list' %}">Annuler</a>
+</form>
+{% endblock %}

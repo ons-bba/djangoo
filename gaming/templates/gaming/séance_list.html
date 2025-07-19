@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Séances</title>
+</head>
+<body>
+    <h1>Séances de Jeu</h1>
+    {% if joueur_connecté %}
+        <p>Joueur connecté: {{ joueur_connecté }}</p>
+    {% endif %}
+    
+    <ul>
+        {% for séance in séances %}
+            <li>
+                {{ séance.titre }} ({{ séance.code }})
+                <a href="{% url 'séance-detail' séance.code %}">Détails</a>
+                <a href="{% url 'séance-update' séance.pk %}">Modifier</a>
+                <a href="{% url 'séance-delete' séance.pk %}">Supprimer</a>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{% url 'séance-create' %}">Ajouter une Séance</a>
+</body>
+</html>

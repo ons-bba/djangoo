@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Liste des séances</h1>
+
+<h2>Joueurs connectés :</h2>
+<ul>
+    {% for joueur in joueurs_connectes %}
+        <li>{{ joueur.username }}</li>
+    {% empty %}
+        <li>Aucun joueur connecté.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'seance_add' %}">Ajouter une séance</a>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Titre</th>
+            <th>Date de début</th>
+            <th>État</th>
+            <th>Organisateur</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for seance in seances %}
+        <tr>
+            <td><a href="{% url 'seance_detail' seance.code %}">{{ seance.code }}</a></td>
+            <td>{{ seance.titre }}</td>
+            <td>{{ seance.date_debut }}</td>
+            <td>{{ seance.etat }}</td>
+            <td>{{ seance.organisateur.username }}</td>
+            <td>
+                <a href="{% url 'seance_edit' seance.pk %}">Modifier</a> |
+                <a href="{% url 'seance_delete' seance.code %}">Supprimer</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="6">Aucune séance disponible.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,5 +1,5 @@
 """
-WSGI config for gaming_project project.
+WSGI config for gameplatform project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gaming_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gameplatform.settings')
 
 application = get_wsgi_application()

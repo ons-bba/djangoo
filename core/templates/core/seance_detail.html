@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Détail de la séance : {{ seance.titre }}</h1>
+
+<ul>
+    <li><strong>Code :</strong> {{ seance.code }}</li>
+    <li><strong>Date de début :</strong> {{ seance.date_debut }}</li>
+    <li><strong>État :</strong> {{ seance.etat }}</li>
+    <li><strong>Organisateur :</strong> {{ seance.organisateur.username }}</li>
+    <li><strong>Participants :</strong>
+        <ul>
+        {% for participant in seance.participants.all %}
+            <li>{{ participant.username }}</li>
+        {% empty %}
+            <li>Aucun participant</li>
+        {% endfor %}
+        </ul>
+    </li>
+</ul>
+
+<a href="{% url 'seance_list' %}">Retour à la liste</a>
+{% endblock %}
